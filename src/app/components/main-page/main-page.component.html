@@ -1,0 +1,10 @@
+<div>
+    <div 
+        *ngFor="let cat of categories$ | async"
+        [routerLink]="['/category', cat.uid]">
+        <span>{{ cat.name }}</span>
+        <div>
+            <img [src]="cat.img" alt="">
+        </div>
+    </div>
+</div>

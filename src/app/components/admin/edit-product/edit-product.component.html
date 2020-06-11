@@ -1,0 +1,149 @@
+<div class="container">
+    <managment-list [items$]="products$" (operation)="edit($event)"></managment-list>
+    
+    <div 
+        *ngIf="(product$ | async) as product"
+        class="product">
+        <form [formGroup]="editForm" (ngSubmit)="updateProduct(product.uid)">
+            <div class="form-group">
+    
+                <div class="form-item">
+                    <label>Name</label>
+                    <input 
+                        formControlName="name"
+                        type="text"
+                        class="form-control">
+                    <span [style.opacity]="(name.errors && name.errors.required)? 1 : 0">Required</span>
+                    <span [style.opacity]="(!name.value || (name.errors && name.errors.minlength))? 1 : 0">Min 3 characters</span>
+                    <span [style.opacity]="(!name.value || (name.errors && name.errors.maxlength))? 1 : 0">Max 150 characters</span>
+                </div>
+    
+                <div class="form-item">
+                    <label>Grammare</label>
+                    <input 
+                        formControlName="grammare"
+                        type="text"
+                        class="form-control">
+                    <span [style.opacity]="(grammare.errors && grammare.errors.required)? 1 : 0">Required</span>
+                </div>
+    
+                <div class="form-item">
+                    <label>Description</label>
+                    <textarea 
+                        formControlName="description"
+                        class="form-control">
+                    </textarea>
+                    <span>Optional</span>
+                </div>
+    
+                <div class="form-item">
+                    <label>Composition</label>
+                    <textarea 
+                        formControlName="composition"
+                        class="form-control">
+                    </textarea>
+                    <span [style.opacity]="(composition.errors && composition.errors.required)? 1 : 0">Required</span>
+                </div>
+    
+                <div class="form-item">
+                    <label>Allergens</label>
+                    <textarea 
+                        formControlName="allergens"
+                        class="form-control">
+                    </textarea>
+                    <span [style.opacity]="(allergens.errors && allergens.errors.required)? 1 : 0">Required</span>
+                </div>
+    
+                <div class="form-item">
+                    <label>Categories</label>
+                    <select multiple formControlName="categories">
+                        <option *ngFor="let category of categories$ | async" [ngValue]="category.uid">{{ category.name }}</option>
+                    </select>
+                </div>
+    
+                <div class="form-item">
+                    <label>Image</label>
+                    <input 
+                        formControlName="img"
+                        type="text"
+                        class="form-control">
+                    <span>Optional</span>
+                </div>
+    
+                <div class="form-item">
+                    <label>Portion weight</label>
+                    <input 
+                        formControlName="portionWeight"
+                        type="number"
+                        class="form-control">
+                    <span [style.opacity]="(protein.errors && protein.errors.required)? 1 : 0 ">Required</span>
+                    <span [style.opacity]="(protein.errors && protein.errors.min)? 1 : 0 ">Greater than 0</span>
+                </div>
+    
+                <div formGroupName="nutriValues">
+                    <div class="form-item">
+                        <label>Protein</label>
+                        <input 
+                            formControlName="protein"
+                            type="number"
+                            class="form-control">
+                        <span [style.opacity]="(protein.errors && protein.errors.required)? 1 : 0 ">Required</span>
+                        <span [style.opacity]="(protein.errors && protein.errors.min)? 1 : 0 ">Greater than 0</span>
+                    </div>
+    
+                    <div class="form-item">
+                        <label>Fat</label>
+                        <input 
+                            formControlName="fat"
+                            type="number"
+                            class="form-control">
+                        <span [style.opacity]="(fat.errors && fat.errors.required)? 1 : 0 ">Required</span>
+                        <span [style.opacity]="(fat.errors && fat.errors.min)? 1 : 0 ">Greater than 0</span>
+                    </div>
+    
+                    <div class="form-item">
+                        <label>Carbohydrate</label>
+                        <input 
+                            formControlName="carbohydrate"
+                            type="number"
+                            class="form-control">
+                        <span [style.opacity]="(carbohydrate.errors && carbohydrate.errors.required)? 1 : 0 ">Required</span>
+                        <span [style.opacity]="(carbohydrate.errors && carbohydrate.errors.min)? 1 : 0 ">Greater than 0</span>
+                    </div>
+    
+                    <div class="form-item">
+                        <label>Sugar</label>
+                        <input 
+                            formControlName="sugar"
+                            type="number"
+                            class="form-control">
+                        <span [style.opacity]="(sugar.errors && sugar.errors.required)? 1 : 0 ">Required</span>
+                        <span [style.opacity]="(sugar.errors && sugar.errors.min)? 1 : 0 ">Greater than 0</span>
+                    </div>
+    
+                    <div class="form-item">
+                        <label>Sodium</label>
+                        <input 
+                            formControlName="sodium"
+                            type="number"
+                            class="form-control">
+                        <span [style.opacity]="(sodium.errors && sodium.errors.required)? 1 : 0 ">Required</span>
+                        <span [style.opacity]="(sodium.errors && sodium.errors.min)? 1 : 0 ">Greater than 0</span>
+                    </div>
+    
+                    <div class="form-item">
+                        <label>Calories</label>
+                        <input 
+                            formControlName="calories"
+                            type="number"
+                            class="form-control">
+                        <span [style.opacity]="(calories.errors && calories.errors.required)? 1 : 0 ">Required</span>
+                        <span [style.opacity]="(calories.errors && calories.errors.min)? 1 : 0 ">Greater than 0</span>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="button" (click)="deleteProduct(product.uid)" class="btn btn-primary">Delete</button>
+        </form>
+    </div>
+</div>

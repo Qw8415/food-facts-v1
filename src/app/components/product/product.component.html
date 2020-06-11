@@ -1,0 +1,48 @@
+<div *ngIf="(product$ | async) as prod; else error">
+    
+    <div>
+        <h1>{{ prod.name }}</h1>
+        <div>
+            <h2>Grammare</h2>
+            <p>{{ prod.grammare }}</p>
+        </div>
+        <div>
+            <h2>Description</h2>
+            <p>{{ prod.description }}</p>
+        </div>
+        <div>
+            <h2>Composition</h2>
+            <p>{{ prod.composition }}</p>
+        </div>
+    </div>
+
+    <div>
+        <div>
+            <img [src]="prod.img" alt=""> 
+        </div>
+
+        <div>
+            <h2>Allergens</h2>
+            <p>{{ prod.allergens }}</p>
+        </div>
+        
+        <div *ngIf="(nutries$ | async) as nutries; else error" class="nutri">
+            <table>
+                <tr>
+                    <th></th>
+                    <th>100g</th>
+                    <th>Portion</th>
+                </tr>
+                <tr *ngFor="let nutri of nutries | keyvalue">
+                    <td>{{ nutri.key }}</td>
+                    <td>{{ nutries.get(nutri.key)[0] | number:'0.0-2' }}</td>
+                    <td>{{ nutries.get(nutri.key)[1] | number:'0.0-2' }}</td>
+                </tr>
+                
+            </table>
+        </div>
+    </div>
+</div>
+<ng-template #error>
+    error
+</ng-template>

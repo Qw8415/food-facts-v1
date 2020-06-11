@@ -1,0 +1,40 @@
+
+<div>
+    <div>
+        <div>
+            <button 
+                (click)="choose('categories')">
+                Categories
+            </button>
+            <div *ngIf="choice == 'categories'">
+                <button 
+                    routerLink="category/add">
+                    Add
+                </button>
+                <button 
+                    routerLink="category/edit">
+                    Edit
+                </button>
+            </div>
+        </div>
+        <div>
+            <button 
+                (click)="choose('products')">
+                Products
+            </button>
+            <div *ngIf="choice == 'products'">
+                <button 
+                    routerLink="product/add">
+                    Add
+                </button>
+                <button 
+                    routerLink="product/edit">
+                    Update
+                </button>
+            </div>
+        </div>
+        
+    </div>
+    
+    <router-outlet></router-outlet>
+</div>

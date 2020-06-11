@@ -1,0 +1,11 @@
+<div>
+    <!-- <button (click)="add()">Add new</button> -->
+    <ul>
+        <h2>Edit:</h2>
+        <li 
+            *ngFor="let item of items$ | async"
+            (click)="edit(item.uid)">
+            {{ item.name }}
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="categories">
+        <button class="btn-add">Add new</button>
+        <ul class="list">
+            <h4>Categories:</h4>
+            <li 
+                *ngFor="let cat of categories$ | async"
+                (click)="getCategory(cat.uid)"
+                class="list-item">
+                {{ cat. name }}
+            </li>
+        </ul>
+    </div>
+    
+    <div 
+        *ngIf="(category$ | async) as category"
+        class="category">
+        <form [formGroup]="editForm" (ngSubmit)="update(category.uid)">
+            <div class="form-group">
+                <div class="form-item">
+                    <label>Name</label>
+                    <input 
+                        formControlName="name"
+                        type="text"
+                        class="form-control">
+                    <span [style.opacity]="(name.errors && name.errors.required)? 1 : 0">Required</span>
+                    <span [style.opacity]="(!name.value || (name.errors && name.errors.minlength))? 1 : 0">Min 3 characters</span>
+                    <span [style.opacity]="(!name.value || (name.errors && name.errors.maxlength))? 1 : 0">Max 60 characters</span>
+                </div>
+                <div class="form-item">
+                    <label>Image</label>
+                    <input 
+                        formControlName="img"
+                        type="text"
+                        class="form-control">
+                    <span>Optional</span>
+                </div>
+            </div>
+
+            <button type="submit" class="">Add</button>
+            <button type="submit" class="">Update</button>
+            <button type="button" (click)="delete(category.uid)" class="">Delete</button>
+        </form>
+    </div>
+</div>

@@ -1,9 +1,10 @@
-<div>
+<div class="card-container">
     <div 
         *ngFor="let prod of products$ | async"
-        [routerLink]="['/product', prod.uid]">
+        [routerLink]="['/product', prod.uid]"
+        class="card">
         <span>{{ prod.name }}</span>
-        <div>
+        <div class="img">
             <img [src]="prod.img" alt="">
         </div>
     </div>

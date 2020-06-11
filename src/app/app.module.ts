@@ -20,9 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EditCategoryComponent } from './components/admin/edit-category/edit-category.component';
 import { AddProductFormComponent } from './components/admin/add-product-form/add-product-form.component';
 import { EditProductComponent } from './components/admin/edit-product/edit-product.component';
-import { CategoryFormComponent } from './components/admin/category-form/category-form.component';
 import { ManagmentListComponent } from './components/admin/managment-list/managment-list.component';
-import { ProductFormComponent } from './components/admin/product-form/product-form.component'
 
 @NgModule({
   declarations: [
@@ -36,9 +34,7 @@ import { ProductFormComponent } from './components/admin/product-form/product-fo
     EditCategoryComponent,
     AddProductFormComponent,
     EditProductComponent,
-    CategoryFormComponent,
     ManagmentListComponent,
-    ProductFormComponent
   ],
   imports: [
     BrowserModule,

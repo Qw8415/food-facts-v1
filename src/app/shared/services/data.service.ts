@@ -4,9 +4,7 @@ import { Observable } from 'rxjs';
 import { Item } from '../models/item.model';
 import { map } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
+
 export class DataService<T extends Item> {
   
   constructor(protected collection: string, protected afs: AngularFirestore) { }
